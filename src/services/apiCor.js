@@ -22,8 +22,8 @@ module.exports = class Api {
             url: '/corws/login',
             headers: {"Content-Type": "application/json"},
             data: {
-                username: this.username,
-                password: this.password
+                username: 'planejamento',
+                password: 'planejamentocor'
             }
         }).then(r => {
             this.token = r.data;
