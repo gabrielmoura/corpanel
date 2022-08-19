@@ -1,4 +1,5 @@
 export default function EventoCor(props) {
+    const evento = props.evento;
     return (
         <div className="d-flex text-muted pt-3">
             <svg className="bd-placeholder-img flex-shrink-0 me-2 rounded" width="32"
@@ -10,15 +11,15 @@ export default function EventoCor(props) {
             </svg>
 
             <p className="pb-3 mb-0 small lh-sm border-bottom">
-                <span className='d-none'>{props.evento.id}</span>
-                <strong className="d-block text-gray-dark">{props.evento.titulo}</strong>
-                <strong className="d-block text-gray-dark">{props.evento.gravidade}</strong>
-                <strong className="d-block text-gray-dark">{props.evento.bairro}</strong>
+                <span className='d-none'>{evento?.id}</span>
+                <strong className="d-block text-gray-dark">{evento?.titulo}</strong>
+                <strong className="d-block text-gray-dark">{evento?.gravidade}</strong>
+                <strong className="d-block text-gray-dark">{evento?.bairro}</strong>
                 <span
-                    className="d-block text-gray-dark">Abertura: {new Date(props.evento.inicio).toLocaleString('pt-BR')}</span>
+                    className="d-block text-gray-dark">Abertura: {new Date(evento?.inicio).toLocaleString('pt-BR')}</span>
                 <span
-                    className="d-block text-gray-dark">{!props.evento.fim ? '' : `Fim: ${new Date(props.evento.fim).toLocaleString('pt-BR')}`}</span>
-                {props.evento.descricao}
+                    className="d-block text-gray-dark">{!evento?.fim ? '' : `Fim: ${new Date(evento?.fim).toLocaleString('pt-BR')}`}</span>
+                {evento?.descricao}
             </p>
         </div>
     )

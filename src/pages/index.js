@@ -8,14 +8,16 @@ import TopPanel from "../components/topPanel";
 import Nav2 from "../components/nav2";
 import {useQuery} from "@tanstack/react-query";
 
-export default function Home({}) {
+export default function Home() {
     const {data, refetch, isLoading, isLoadingError} = useQuery(['comandos'], async () => {
         const api = new Api('planejamento', 'planejamentocor');
         await api.autorization();
-        return await api.getData();
+        const response=await api.getData();
+        return response.data;
     }, {
         cacheTime: milliseconds.minutes(5),
     });
+
     return (
         <>
             <Head>
@@ -28,12 +30,12 @@ export default function Home({}) {
 
                 <div className="my-3 p-3 bg-body rounded shadow-sm">
                     <h6 className="border-bottom pb-2 mb-0">Abertos</h6>
-                    {(isLoading || isLoadingError) ? (<p>Carregando</p>) : data?.eventos.map(evento => {
+
+                    {(isLoading ) ? (<p>Carregando</p>) : data.eventos.map(evento => {
                         if (evento.status == 'ABERTO') {
                             return <EventoCor evento={evento}></EventoCor>
                         }
                     })}
-
                     <small className="d-block text-end mt-3">
                         {/*<a href="#">All updates</a>*/}
                     </small>
@@ -41,7 +43,7 @@ export default function Home({}) {
 
                 <div className="my-3 p-3 bg-body rounded shadow-sm">
                     <h6 className="border-bottom pb-2 mb-0">Fechados</h6>
-                    {(isLoading || isLoadingError) ? (<p>Carregando</p>) : data?.eventos.map(evento => {
+                    {(isLoading ) ? (<p>Carregando</p>) : data.eventos.map(evento => {
                         if (evento.status == 'FECHADO') {
                             return <EventoCor evento={evento}></EventoCor>
                         }

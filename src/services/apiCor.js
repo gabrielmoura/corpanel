@@ -4,7 +4,7 @@ const moment = require('moment');
 module.exports = class Api {
     token;
 
-    constructor(username, password, baseURL = 'http://geoportal.cor.rio.gov.br') {
+    constructor(username, password, baseURL = 'http://ws.status.rio') {
         this.baseURL = baseURL;
         this.username = username;
         this.password = password;
@@ -21,7 +21,6 @@ module.exports = class Api {
             baseURL: this.baseURL,
             url: '/corws/login',
             headers: {"Content-Type": "application/json"},
-            withCredentials:false,
             data: {
                 username: this.username,
                 password: this.password
@@ -41,13 +40,13 @@ module.exports = class Api {
             return  axios({
                 method: 'post',
                 baseURL: this.baseURL,
-                url: '/statuscomando/v2/listarEventos',
+                url: `/statuscomandows/listarEventos`,
                 headers: {
                     'Authorization': this.token,
                     'Content-Type': 'application/json'
                 },
                 data: {
-                    "inicio": moment(this.dataBusca).subtract(29, 'days').format('YYYY-MM-DD 00:00:00.0'),
+                    "inicio": moment(this.dataBusca).subtract(24, 'hours').format('YYYY-MM-DD 00:00:00.0'),
                 }
             })
         }
