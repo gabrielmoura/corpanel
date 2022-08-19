@@ -21,21 +21,24 @@ module.exports = class Api {
             baseURL: this.baseURL,
             url: '/corws/login',
             headers: {"Content-Type": "application/json"},
+            withCredentials:false,
             data: {
-                username: 'planejamento',
-                password: 'planejamentocor'
+                username: this.username,
+                password: this.password
             }
-        }).then(r => {
+        },).then(r => {
             this.token = r.data;
-
+            if(process.env.NODE_ENV!=="production"){
+                console.log(r);
+            }
         }).catch(err => {
             console.error(err);
         });
     }
 
-    async getData() {
+    async getData(func) {
         if (!!this.token) {
-            return await axios({
+            return  axios({
                 method: 'post',
                 baseURL: this.baseURL,
                 url: '/statuscomando/v2/listarEventos',
@@ -44,9 +47,10 @@ module.exports = class Api {
                     'Content-Type': 'application/json'
                 },
                 data: {
-                    "inicio": moment(this.dataBusca).subtract(1, 'days').format('YYYY-MM-DD 00:00:00.0'),
+                    "inicio": moment(this.dataBusca).subtract(29, 'days').format('YYYY-MM-DD 00:00:00.0'),
                 }
             })
         }
+
     }
 }
