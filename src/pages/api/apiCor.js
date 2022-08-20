@@ -1,11 +1,20 @@
 import Api from "../../services/apiCor";
-
+import {getCookies, getCookie, setCookie, hasCookie} from 'cookies-next';
 
 export default async function handler(req, res) {
-    const api = new Api('planejamento', 'planejamentocor');
-    //await api.autorization();
-    api.token="Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwbGFuZWphbWVudG8iLCJleHAiOjE2NjE3ODUzODB9.MX2Gj_HAIRwqOHSykVmm01pQjAYsEas_Ah8f4K4V9K_Mnipmk4BDDNhX5iVQ-gjOuyzumTD2Yj9Mg_VJEGXGDg";
+    const api = new Api(process.env.API_USER, process.env.API_PASS);
+    const named = 'corPanel'
 
-    const data= await api.getData();
-    return res.status(200).json(data.data);
+    if (hasCookie(named, {req, res})) {
+        api.token = getCookie(named, {req, res})
+    } else {
+        await api.autorization();
+        setCookie(named, api.getToken(), {
+            req, res,
+            maxAge: 864000, // 10 Dias
+        })
+    }
+
+    const data = await api.getData();
+    return res.status(data.status).json(data.data);
 }

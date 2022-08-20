@@ -15,38 +15,59 @@ module.exports = class Api {
         return this.token;
     }
 
+    setToken(token) {
+        this.token = token;
+    }
+
     async autorization() {
-        await axios({
-            method: 'post',
-            baseURL: this.baseURL,
-            url: '/corws/login',
-            headers: {"Content-Type": "application/json"},
-            data: {
-                username: this.username,
-                password: this.password
-            }
-        },).then(r => {
-            this.token = r.data;
-            if(process.env.NODE_ENV!=="production"){
-                console.log(r);
-            }
-        }).catch(err => {
-            console.error(err);
-        });
+        if (!this.token) {
+            await axios({
+                method: 'post',
+                baseURL: this.baseURL,
+                url: '/corws/login',
+                headers: {"Content-Type": "application/json"},
+                data: {
+                    username: this.username,
+                    password: this.password
+                }
+            },).then(r => {
+                this.token = r.data;
+                if (process.env.NODE_ENV !== "production") {
+                    console.log(r);
+                }
+            }).catch(err => {
+                console.error(err);
+            });
+        }
     }
 
     async getData(func) {
         if (!!this.token) {
-            return  axios({
-                method: 'post',
+            return axios({
+                method: 'get',
                 baseURL: this.baseURL,
-                url: `/statuscomandows/listarEventos`,
+                url: `/statuscomando/v2/listarEventos`,
                 headers: {
                     'Authorization': this.token,
                     'Content-Type': 'application/json'
                 },
                 data: {
-                    "inicio": moment(this.dataBusca).subtract(24, 'hours').format('YYYY-MM-DD 00:00:00.0'),
+                    'inicio': moment(this.dataBusca).subtract(1, 'days').format('YYYY-MM-DD 00:00:00.0')
+                }
+            })
+        }
+
+    }
+
+    async getOpen(func) {
+        if (!!this.token) {
+            return axios({
+                method: 'get',
+                baseURL: this.baseURL,
+                url: `/statuscomando/v2/listarEventosAbertos?inicio=` + moment(this.dataBusca).subtract(1, 'days').format('YYYY-MM-DD 00:00:00.0'),
+                headers: {
+                    'Authorization': this.token,
+                    'Content-Type': 'application/json'
                 }
             })
         }

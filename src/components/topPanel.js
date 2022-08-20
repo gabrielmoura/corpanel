@@ -15,7 +15,7 @@ export default function TopPanel(props) {
         setHeaderHour(moment(timeLoad).format('HH:mm'));
         setTimeout(() => {
             setTimeLoad(new Date());
-        }, milliseconds.minutes(1));
+        }, milliseconds.seconds(3));
     }, [timeLoad])
 
 

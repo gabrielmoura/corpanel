@@ -3,19 +3,18 @@ import Navbar from '../components/navbar'
 import EventoCor from '../components/eventoCor'
 
 import milliseconds from 'milliseconds';
-import Api from '../services/apiCor'
 import TopPanel from "../components/topPanel";
 import Nav2 from "../components/nav2";
 import {useQuery} from "@tanstack/react-query";
+import axios from "axios";
 
 export default function Home() {
-    const {data, refetch, isLoading, isLoadingError} = useQuery(['comandos'], async () => {
-        const api = new Api('planejamento', 'planejamentocor');
-        await api.autorization();
-        const response=await api.getData();
-        return response.data;
+    const {data, refetch, isLoading} = useQuery(['comandos'], async () => {
+        const axi = await axios.get('/api/apiCor');
+        return await axi.data;
     }, {
         cacheTime: milliseconds.minutes(5),
+        staleTime: milliseconds.minutes(5),
     });
 
     return (
@@ -31,7 +30,7 @@ export default function Home() {
                 <div className="my-3 p-3 bg-body rounded shadow-sm">
                     <h6 className="border-bottom pb-2 mb-0">Abertos</h6>
 
-                    {(isLoading ) ? (<p>Carregando</p>) : data.eventos.map(evento => {
+                    {(isLoading) ? (<p>Carregando</p>) : data?.eventos.map(evento => {
                         if (evento.status == 'ABERTO') {
                             return <EventoCor evento={evento}></EventoCor>
                         }
@@ -43,7 +42,7 @@ export default function Home() {
 
                 <div className="my-3 p-3 bg-body rounded shadow-sm">
                     <h6 className="border-bottom pb-2 mb-0">Fechados</h6>
-                    {(isLoading ) ? (<p>Carregando</p>) : data.eventos.map(evento => {
+                    {(isLoading) ? (<p>Carregando</p>) : data?.eventos.map(evento => {
                         if (evento.status == 'FECHADO') {
                             return <EventoCor evento={evento}></EventoCor>
                         }
