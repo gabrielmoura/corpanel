@@ -28,9 +28,10 @@ export default function Home() {
                 <TopPanel refetch={refetch}/>
 
                 <div className="my-3 p-3 bg-body rounded shadow-sm">
-                    <h6 className="border-bottom pb-2 mb-0">Abertos</h6>
+                    <h6 className="border-bottom pb-2 mb-0">Abertos {(isLoading) ? (
+                        <p>Carregando</p>) : data?.open.eventos.length}</h6>
 
-                    {(isLoading) ? (<p>Carregando</p>) : data?.eventos.map(evento => {
+                    {(isLoading) ? (<p>Carregando</p>) : data?.open.eventos.map(evento => {
                         if (evento.status == 'ABERTO') {
                             return <EventoCor evento={evento}></EventoCor>
                         }
@@ -41,8 +42,9 @@ export default function Home() {
                 </div>
 
                 <div className="my-3 p-3 bg-body rounded shadow-sm">
-                    <h6 className="border-bottom pb-2 mb-0">Fechados</h6>
-                    {(isLoading) ? (<p>Carregando</p>) : data?.eventos.map(evento => {
+                    <h6 className="border-bottom pb-2 mb-0">Fechados {(isLoading) ? (
+                        <p>Carregando</p>) : data?.close.eventos.length}</h6>
+                    {(isLoading) ? (<p>Carregando</p>) : data?.close.eventos.map(evento => {
                         if (evento.status == 'FECHADO') {
                             return <EventoCor evento={evento}></EventoCor>
                         }

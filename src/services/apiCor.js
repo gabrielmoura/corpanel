@@ -59,12 +59,31 @@ module.exports = class Api {
 
     }
 
+    async getClose(func) {
+        if (!!this.token) {
+            return axios({
+                method: 'get',
+                baseURL: this.baseURL,
+                url: `/statuscomando/v2/listarEventos`,
+                headers: {
+                    'Authorization': this.token,
+                    'Content-Type': 'application/json'
+                },
+                data: {
+                    'inicio': moment(this.dataBusca).subtract(1, 'days').format('YYYY-MM-DD 00:00:00.0'),
+                    'status': 'FECHADO'
+                }
+            })
+        }
+
+    }
+
     async getOpen(func) {
         if (!!this.token) {
             return axios({
                 method: 'get',
                 baseURL: this.baseURL,
-                url: `/statuscomando/v2/listarEventosAbertos?inicio=` + moment(this.dataBusca).subtract(1, 'days').format('YYYY-MM-DD 00:00:00.0'),
+                url: `/statuscomando/v2/listarEventosAbertos`,
                 headers: {
                     'Authorization': this.token,
                     'Content-Type': 'application/json'
