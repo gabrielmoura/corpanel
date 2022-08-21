@@ -1,6 +1,9 @@
 import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import MapboxMap from "./map";
+
+
 
 export default function EventoCor(props) {
     const evento = props.evento;
@@ -8,6 +11,7 @@ export default function EventoCor(props) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
     return (
         <>
             <div className="d-flex text-muted pt-3">
@@ -43,13 +47,15 @@ export default function EventoCor(props) {
                     <span
                         className="d-block text-gray-dark">Aberto: {new Date(evento?.inicio).toLocaleString('pt-BR')}</span>
                     {!evento?.fim ? '' :
-                        (<span className="d-block text-gray-dark">Fechado: {new Date(evento?.fim).toLocaleString('pt-BR')} </span>)
+                        (<span
+                            className="d-block text-gray-dark">Fechado: {new Date(evento?.fim).toLocaleString('pt-BR')} </span>)
                     }
                     <span className="d-block text-gray-dark">Prazo: {evento?.prazo}</span>
                     <span className="d-block text-gray-dark">Descrição: {evento?.descricao}</span>
                     <span className="d-block text-gray-dark">Gravidade: {evento?.gravidade}</span>
                     <span className="d-block text-gray-dark">Latitude: {evento?.latitude}</span>
                     <span className="d-block text-gray-dark">Longitude: {evento?.longitude}</span>
+                    <MapboxMap latitude={evento.latitude} longitude={evento.longitude}/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
