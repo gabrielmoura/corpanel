@@ -53,8 +53,6 @@ export default function EventoCor(props) {
                     <span className="d-block text-gray-dark">Prazo: {evento?.prazo}</span>
                     <span className="d-block text-gray-dark">Descrição: {evento?.descricao}</span>
                     <span className="d-block text-gray-dark">Gravidade: {evento?.gravidade}</span>
-                    <span className="d-block text-gray-dark">Latitude: {evento?.latitude}</span>
-                    <span className="d-block text-gray-dark">Longitude: {evento?.longitude}</span>
                     <MapboxMap latitude={evento.latitude} longitude={evento.longitude}/>
                 </Modal.Body>
                 <Modal.Footer>

@@ -1,19 +1,37 @@
 import Map, {Marker} from 'react-map-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
 
 export default function MapBox(props) {
-    const MAPBOX_TOKEN = 'pk.eyJ1IjoiZ2FicmllbHJtb3VyYSIsImEiOiJjbDczcndyMmQxYjV3M3ZsY28ydHBybWMwIn0.TkPKyun1sSOX4W30kwMOMg';
-    // const MAPBOX_TOKEN = '';
+    const style = {
+        "version": 8,
+        "sources": {
+            "osm": {
+                "type": "raster",
+                "tiles": ["https://c.tile.openstreetmap.org/{z}/{x}/{y}.png"],
+                "tileSize": 256,
+                "attribution": "&copy; Computei Tecnology",
+                "maxzoom": 19
+            }
+        },
+        "layers": [
+            {
+                "id": "osm",
+                "type": "raster",
+                "source": "osm" // This must match the source key above
+            }
+        ]
+    };
+
     return (
-        <Map
-            initialViewState={{
-                latitude: props.latitude,
-                longitude: props.longitude,
-                zoom: 14
-            }}
-            style={{width: 470, height: 286}}
-            mapStyle="mapbox://styles/mapbox/streets-v9"
-            mapboxAccessToken={MAPBOX_TOKEN}
+        <Map mapLib={maplibregl}
+             initialViewState={{
+                 latitude: props.latitude,
+                 longitude: props.longitude,
+                 zoom: 17
+             }}
+             style={{width: 470, height: 286}}
+             mapStyle={style}
         >
             <Marker longitude={props.longitude} latitude={props.latitude} color="red"/>
         </Map>
