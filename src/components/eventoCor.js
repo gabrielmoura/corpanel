@@ -33,7 +33,7 @@ export default function EventoCor(props) {
                     <strong className="d-block text-gray-dark">{evento?.gravidade}</strong>
                     <strong className="d-block text-gray-dark">{evento?.bairro}</strong>
                     <span
-                        className="d-block text-gray-dark">Abertura: {new Date(evento?.inicio).toLocaleString('pt-BR')}</span>
+                        className="d-block text-gray-dark">Abertura: {(evento?.inicio) ?new Date(evento?.inicio).toLocaleString('pt-BR'):''}</span>
                     <span
                         className="d-block text-gray-dark">{!evento?.fim ? '' : `Fim: ${new Date(evento?.fim).toLocaleString('pt-BR')}`}</span>
                     {evento?.descricao}
