@@ -1,11 +1,14 @@
 export default function Navbar() {
+    function toggle(){
+        document.querySelector('.offcanvas-collapse').classList.toggle('open');
+    }
     return (
         <>
             <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
                 <div className="container-fluid">
                     <a className="navbar-brand" href="#">Sala de Controle</a>
                     <button className="navbar-toggler p-0 border-0" type="button" id="navbarSideCollapse"
-                            aria-label="Toggle navigation">
+                            aria-label="Toggle navigation" onClick={toggle}>
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
