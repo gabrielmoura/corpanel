@@ -1,3 +1,8 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 const axios = require('axios');
 const moment = require('moment');
 

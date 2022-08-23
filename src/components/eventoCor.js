@@ -1,3 +1,8 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -11,8 +16,6 @@ export default function EventoCor(props) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-
 
     return (
         <>

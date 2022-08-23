@@ -1,3 +1,8 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 import Map, {Marker} from 'react-map-gl';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';

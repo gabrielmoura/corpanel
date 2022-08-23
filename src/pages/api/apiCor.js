@@ -1,3 +1,8 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 import Api from "../../services/apiCor";
 import {getCookies, getCookie, setCookie, hasCookie} from 'cookies-next';
 

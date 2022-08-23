@@ -1,7 +1,11 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 import Image from "next/image";
 import profilePic from "../../public/logo_cor.png";
 import moment from "moment";
-// import Router from 'next/router'
 import {useEffect, useState} from "react";
 import milliseconds from 'milliseconds';
 
@@ -27,8 +31,6 @@ export default function TopPanel(props) {
                     alt="Logo"
                     width='213'
                     height='38'
-                    // blurDataURL="data:..." automatically provided
-                    // placeholder="blur" // Optional blur-up while loading
                 />
 
             </div>

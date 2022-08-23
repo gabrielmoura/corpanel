@@ -1,3 +1,8 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 export default function Navbar() {
     function toggle(){
         document.querySelector('.offcanvas-collapse').classList.toggle('open');

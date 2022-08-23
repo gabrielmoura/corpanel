@@ -1,5 +1,10 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 import Api from "../../services/apiCor";
-import {getCookies, getCookie, setCookie, hasCookie} from 'cookies-next';
+import {getCookie, setCookie, hasCookie} from 'cookies-next';
 
 export default async function handler(req, res) {
     const api = new Api(process.env.API_USER, process.env.API_PASS);

@@ -1,14 +1,17 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 import '../../styles/globals.css'
 import 'bootstrap/dist/css/bootstrap.css'
 
-
-import {Hydrate, QueryClient, QueryClientProvider} from '@tanstack/react-query'
-// import {useState} from "react";
+import {QueryClient, QueryClientProvider} from '@tanstack/react-query'
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools'
+
 const queryClient = new QueryClient()
 
 function MyApp({Component, pageProps}) {
-   // const [queryClient] = useState(() => new QueryClient())
     return (
         <QueryClientProvider client={queryClient}>
             <Component {...pageProps} />

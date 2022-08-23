@@ -1,3 +1,8 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 import Head from 'next/head'
 import Navbar from '../components/navbar'
 import EventoCor from '../components/eventoCor'

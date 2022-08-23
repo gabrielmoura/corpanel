@@ -1,3 +1,8 @@
+/*
+ *  Copyright (c) Gabriel Moura  2022
+ *  Email: gabriel.blx32@gmail.com
+ */
+
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import milliseconds from "milliseconds";
