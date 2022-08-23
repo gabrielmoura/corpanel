@@ -92,4 +92,17 @@ module.exports = class Api {
         }
 
     }
+    async getActivity(eventoId){
+        if (!!this.token) {
+            return axios({
+                method: 'get',
+                baseURL: this.baseURL,
+                url: `/statuscomando/v2/listarAtividadesDoEvento?eventoId=${eventoId}`,
+                headers: {
+                    'Authorization': this.token,
+                    'Content-Type': 'application/json'
+                }
+            })
+        }
+    }
 }

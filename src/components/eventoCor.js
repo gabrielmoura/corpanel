@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import MapboxMap from "./map";
-
+import Activity from "./activity";
 
 
 export default function EventoCor(props) {
@@ -11,6 +11,8 @@ export default function EventoCor(props) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+
 
     return (
         <>
@@ -53,11 +55,12 @@ export default function EventoCor(props) {
                     <span className="d-block text-gray-dark">Prazo: {evento?.prazo}</span>
                     <span className="d-block text-gray-dark">Descrição: {evento?.descricao}</span>
                     <span className="d-block text-gray-dark">Gravidade: {evento?.gravidade}</span>
+                    <Activity eventoId={evento.id} />
                     <MapboxMap latitude={evento.latitude} longitude={evento.longitude}/>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Close
+                        Fechar
                     </Button>
                     {/*<Button variant="primary" onClick={handleClose}>*/}
                     {/*    Save Changes*/}
