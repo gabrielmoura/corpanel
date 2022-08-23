@@ -4,7 +4,6 @@ import EventoCor from '../components/eventoCor'
 
 import milliseconds from 'milliseconds';
 import TopPanel from "../components/topPanel";
-import Nav2 from "../components/nav2";
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 
@@ -20,10 +19,9 @@ export default function Home() {
     return (
         <>
             <Head>
-                <title>COR RIO</title>
+                <title>Sala de Controle</title>
             </Head>
             <Navbar/>
-            <Nav2/>
             <div className="container">
                 <TopPanel refetch={refetch}/>
                 <div className="row">
