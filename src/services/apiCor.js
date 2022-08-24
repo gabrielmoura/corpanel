@@ -57,7 +57,7 @@ module.exports = class Api {
                     'Content-Type': 'application/json'
                 },
                 data: {
-                    'inicio': moment(this.dataBusca).subtract(1, 'days').format('YYYY-MM-DD 00:00:00.0')
+                    'inicio': moment(this.dataBusca).subtract(29, 'days').format('YYYY-MM-DD 00:00:00.0')
                 }
             })
         }
