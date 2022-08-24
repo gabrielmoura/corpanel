@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     const close = await api.getClose();
     const open = await api.getOpen();
     const status = (close.status == open.status) ? 200 : 400;
-    if (process.env.NODE_ENV != 'production') {
+    if (process.env.log=='enabled') {
         console.log(close);
         console.log(open);
     }
