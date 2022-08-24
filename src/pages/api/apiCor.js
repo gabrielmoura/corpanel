@@ -20,9 +20,10 @@ export default async function handler(req, res) {
         })
     }
 
-    const close = await api.getClose();
-    const open = await api.getOpen();
-    const status = (close.status == open.status) ? 200 : 400;
+    let close = await api.getClose();
+    let open = await api.getOpen();
+
+    const status = (close?.status === open?.status) ? 200 : 400;
 
     console.log(close)
     console.log(open)
