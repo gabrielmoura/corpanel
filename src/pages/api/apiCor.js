@@ -22,7 +22,16 @@ export default async function handler(req, res) {
 
     const close = await api.getClose();
     const open = await api.getOpen();
-    const status=(close.status==open.status)?200:400;
+    const status = (close.status == open.status) ? 200 : 400;
+    if (process.env.NODE_ENV != 'production') {
+        console.log(close);
+        console.log(open);
+    }
 
-    return res.status(status).json({close: close.data,closeStatus:close.status, open: open.data,openStatus:open.status});
+    return res.status(status).json({
+        close: close.data,
+        closeStatus: close.status,
+        open: open.data,
+        openStatus: open.status
+    });
 }
