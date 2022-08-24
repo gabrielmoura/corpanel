@@ -24,5 +24,5 @@ export default async function handler(req, res) {
     const open = await api.getOpen();
     const status=(close.status==open.status)?200:400;
 
-    return res.status(status).json({close: close.data, open: open.data});
+    return res.status(status).json({close: close.data,closeStatus:close.status, open: open.data,openStatus:open.status});
 }
