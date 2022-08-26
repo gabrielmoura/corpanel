@@ -8,6 +8,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import MapboxMap from "./map";
 import Activity from "./activity";
+import {format} from "date-fns";
 
 
 export default function EventoCor(props) {
@@ -36,9 +37,9 @@ export default function EventoCor(props) {
                     <strong className="d-block text-gray-dark">{evento?.gravidade}</strong>
                     <strong className="d-block text-gray-dark">{evento?.bairro}</strong>
                     <span
-                        className="d-block text-gray-dark">Abertura: {(evento?.inicio) ?new Date(evento?.inicio).toLocaleString('pt-BR'):''}</span>
+                        className="d-block text-gray-dark">Abertura: {(evento?.inicio) ? format(new Date(evento?.inicio), 'dd/MM/yyyy hh:mm:ss') : ''}</span>
                     <span
-                        className="d-block text-gray-dark">{!evento?.fim ? '' : `Fim: ${new Date(evento?.fim).toLocaleString('pt-BR')}`}</span>
+                        className="d-block text-gray-dark">{!evento?.fim ? '' : `Fim: ${format(new Date(evento?.fim), 'dd/MM/yyyy hh:mm:ss')}`}</span>
                     {evento?.descricao}
                 </p>
             </div>
@@ -50,15 +51,15 @@ export default function EventoCor(props) {
                 <Modal.Body>
                     <span className="d-block text-gray-dark">Bairro: {evento?.bairro}</span>
                     <span
-                        className="d-block text-gray-dark">Aberto: {new Date(evento?.inicio).toLocaleString('pt-BR')}</span>
+                        className="d-block text-gray-dark">Aberto: {format(new Date(evento?.inicio), 'dd/MM/yyyy hh:mm:ss')}</span>
                     {!evento?.fim ? '' :
                         (<span
-                            className="d-block text-gray-dark">Fechado: {new Date(evento?.fim).toLocaleString('pt-BR')} </span>)
+                            className="d-block text-gray-dark">Fechado: {format(new Date(evento?.fim), 'dd/MM/yyyy hh:mm:ss')} </span>)
                     }
                     <span className="d-block text-gray-dark">Prazo: {evento?.prazo}</span>
                     <span className="d-block text-gray-dark">Descrição: {evento?.descricao}</span>
                     <span className="d-block text-gray-dark">Gravidade: {evento?.gravidade}</span>
-                    <Activity eventoId={evento.id} />
+                    <Activity eventoId={evento.id}/>
                     <MapboxMap latitude={evento.latitude} longitude={evento.longitude}/>
                 </Modal.Body>
                 <Modal.Footer>

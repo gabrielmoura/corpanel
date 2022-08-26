@@ -7,7 +7,7 @@ import Head from 'next/head'
 import Navbar from '../components/navbar'
 import EventoCor from '../components/eventoCor'
 
-import milliseconds from 'milliseconds';
+import {minutesToMilliseconds} from "date-fns";
 import TopPanel from "../components/topPanel";
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
@@ -17,8 +17,8 @@ export default function Home() {
         const axi = await axios.get('/api/apiCor');
         return await axi.data;
     }, {
-        cacheTime: milliseconds.minutes(5),
-        staleTime: milliseconds.minutes(5),
+        cacheTime: minutesToMilliseconds(5),
+        staleTime: minutesToMilliseconds(5),
     });
 
     return (

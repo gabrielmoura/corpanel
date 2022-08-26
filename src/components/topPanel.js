@@ -5,9 +5,8 @@
 
 import Image from "next/image";
 import profilePic from "../../public/logo_cor.png";
-import moment from "moment";
 import {useEffect, useState} from "react";
-import milliseconds from 'milliseconds';
+import {format, secondsToMilliseconds} from 'date-fns'
 
 export default function TopPanel(props) {
     const [headerHour, setHeaderHour] = useState('00/00/0000');
@@ -15,11 +14,13 @@ export default function TopPanel(props) {
     const [timeLoad, setTimeLoad] = useState(undefined);
 
     useEffect(() => {
-        setHeaderDate(moment(timeLoad).format('DD/MM/YYYY'));
-        setHeaderHour(moment(timeLoad).format('HH:mm'));
+        if (!!timeLoad) {
+            setHeaderDate(format(timeLoad, 'dd/MM/yyyy'));
+            setHeaderHour(format(timeLoad, 'hh:mm'));
+        }
         setTimeout(() => {
             setTimeLoad(new Date());
-        }, milliseconds.seconds(3));
+        }, secondsToMilliseconds(3));
     }, [timeLoad])
 
 
@@ -42,7 +43,9 @@ export default function TopPanel(props) {
             <div className="lh-1 col-4 text-center">
 
                 <a href="#" className="lh-1 mb-0 h6 mt-1 text-white btn" onClick={props.refetch}>Atualizar</a><br/>
-                <a href="#" className="lh-1 mb-0 h6 mt-1 text-white btn">Acessar Painel</a>
+                <a href="https://app.powerbi.com/view?r=eyJrIjoiYmUxOWJhYzYtMWFkYy00OWQ0LWI2MDgtMTJjMTE4NWI3NDNiIiwidCI6IjhkYzFiNzM0LTEyYTYtNDNmZC1iMjdkLWE3Yzg0ZmQ0MzdkMiJ9"
+                   className="lh-1 mb-0 h6 mt-1 text-white btn"
+                   target="_blank">Acessar Painel</a>
 
             </div>
         </div>

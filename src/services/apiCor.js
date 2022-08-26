@@ -4,7 +4,7 @@
  */
 
 const axios = require('axios');
-const moment = require('moment');
+import {subDays, format} from 'date-fns'
 
 module.exports = class Api {
     token;
@@ -57,7 +57,7 @@ module.exports = class Api {
                     'Content-Type': 'application/json'
                 },
                 data: {
-                    'inicio': moment(this.dataBusca).subtract(29, 'days').format('YYYY-MM-DD 00:00:00.0')
+                    'inicio': format(subDays(this.dataBusca, 29), 'yyyy-MM-dd 00:00:00.0')
                 }
             })
         }
@@ -75,7 +75,7 @@ module.exports = class Api {
                     'Content-Type': 'application/json'
                 },
                 data: {
-                    'inicio': moment(this.dataBusca).format('YYYY-MM-DD 00:00:00.0'),
+                    'inicio': format(this.dataBusca, 'yyyy-MM-dd 00:00:00.0'),
                     'status': 'FECHADO'
                 }
             })
@@ -97,7 +97,8 @@ module.exports = class Api {
         }
 
     }
-    async getActivity(eventoId){
+
+    async getActivity(eventoId) {
         if (!!this.token) {
             return axios({
                 method: 'get',
