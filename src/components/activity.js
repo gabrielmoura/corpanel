@@ -5,7 +5,7 @@
 
 import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
-import milliseconds from "milliseconds";
+import {format} from "date-fns";
 
 export default function Activity(props) {
     const eventoId = props.eventoId;
@@ -19,7 +19,7 @@ export default function Activity(props) {
 
     return (
         <>
-            <br />
+            <br/>
             <h6>Atividades</h6>
             {!(isLoading) ? data?.atividades.map(activity => {
                 return (
@@ -28,9 +28,9 @@ export default function Activity(props) {
                             <span className="d-block">Nome: {activity?.nome}</span>
                             <span className="d-block">Status: {activity?.status}</span>
                             <span
-                                className="d-block">{(activity?.inicio) ? 'Inicio: '+new Date(activity?.inicio).toLocaleString('pt-BR') : ''}</span>
+                                className="d-block">{(activity?.inicio) ? 'Inicio: ' + format(new Date(activity?.inicio), 'dd/MM/yyyy hh:mm:ss') : ''}</span>
                             <span
-                                className="d-block">{(activity?.chegada) ? 'Chegada: '+new Date(activity?.chegada).toLocaleString('pt-BR') : ''}</span>
+                                className="d-block">{(activity?.chegada) ? 'Chegada: ' + format(new Date(activity?.chegada), 'dd/MM/yyyy hh:mm:ss') : ''}</span>
                             <span className="d-block">Descrição: {activity?.descricao}</span>
                         </div>
                     </>

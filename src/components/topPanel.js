@@ -45,7 +45,8 @@ export default function TopPanel(props) {
                 <a href="#" className="lh-1 mb-0 h6 mt-1 text-white btn" onClick={props.refetch}>Atualizar</a><br/>
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiYmUxOWJhYzYtMWFkYy00OWQ0LWI2MDgtMTJjMTE4NWI3NDNiIiwidCI6IjhkYzFiNzM0LTEyYTYtNDNmZC1iMjdkLWE3Yzg0ZmQ0MzdkMiJ9"
                    className="lh-1 mb-0 h6 mt-1 text-white btn"
-                   target="_blank">Acessar Painel</a>
+                   target="_blank"
+                   rel="noreferrer">Acessar Painel</a>
 
             </div>
         </div>
