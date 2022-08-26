@@ -11,7 +11,7 @@ import {format, secondsToMilliseconds} from 'date-fns'
 export default function TopPanel(props) {
     const [headerHour, setHeaderHour] = useState('00/00/0000');
     const [headerDate, setHeaderDate] = useState('00:00');
-    const [timeLoad, setTimeLoad] = useState(undefined);
+    const [timeLoad, setTimeLoad] = useState(new Date());
 
     useEffect(() => {
         if (!!timeLoad) {
