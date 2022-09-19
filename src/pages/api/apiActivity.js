@@ -14,7 +14,7 @@ export default async function handler(req, res) {
         api.token = getCookie(named, {req, res})
     } else {
         await api.autorization();
-        setCookie(named, api.getToken(), {
+        setCookie(named,await api.getToken(), {
             req, res,
             maxAge: 864000, // 10 Dias
         })

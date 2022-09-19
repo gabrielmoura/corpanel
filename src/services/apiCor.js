@@ -4,7 +4,8 @@
  */
 
 const axios = require('axios');
-import {subDays, format} from 'date-fns'
+import {subDays, format, hoursToSeconds} from 'date-fns'
+import {setToken, hasToken, getToken} from './cache'
 
 module.exports = class Api {
     token;
@@ -16,16 +17,12 @@ module.exports = class Api {
         this.dataBusca = new Date();
     }
 
-    getToken() {
-        return this.token;
-    }
-
-    setToken(token) {
-        this.token = token;
+    async getToken() {
+        return await getToken();
     }
 
     async autorization() {
-        if (!this.token) {
+        if (!hasToken()) {
             await axios({
                 method: 'post',
                 baseURL: this.baseURL,
@@ -36,6 +33,7 @@ module.exports = class Api {
                     password: this.password
                 }
             },).then(r => {
+                setToken(r.data, hoursToSeconds(24) * 9);
                 this.token = r.data;
                 if (process.env.NODE_ENV !== "production") {
                     console.log(r);
