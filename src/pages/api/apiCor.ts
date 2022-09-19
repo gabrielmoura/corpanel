@@ -6,8 +6,7 @@
 import {NextApiRequest, NextApiResponse} from 'next'
 import Api from "../../services/apiCor";
 import {getCookie, hasCookie, setCookie} from 'cookies-next';
-import {rememberCache} from "../../services/cache";
-import {minutesToSeconds} from "date-fns";
+import {hoursToSeconds} from "date-fns";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 
@@ -22,23 +21,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         await api.autorization();
         setCookie(named, await api.getToken(), {
             req, res,
-            maxAge: 864000, // 10 Dias
+            maxAge: hoursToSeconds(24) * 10,
         })
     }
 
+    let close = await api.getClose();
+    let open = await api.getOpen();
+    let status = (close?.status === open?.status) ? 200 : 400;
 
-    const data = rememberCache('openClose', async () => {
-        let close = await api.getClose();
-        let open = await api.getOpen();
-
-        // let status = (close?.status === open?.status) ? 200 : 400;
-        return {
-            close: close.data,
-            open: open.data,
-        }
-    }, minutesToSeconds(5));
-
-    // sem cache : 2.367s
-    // com cache : 0.319ms
-    return res.json(await data);
+    return res.status(status).json({
+        close: close.data,
+        open: open.data,
+    });
 }
