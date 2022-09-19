@@ -4,11 +4,12 @@
  */
 
 import Image from "next/image";
-import profilePic from "../../public/logo_cor.png";
+// @ts-ignore
+import profilePic from '../../public/logo_cor.png';
 import {useEffect, useState} from "react";
 import {format, secondsToMilliseconds} from 'date-fns'
 
-export default function TopPanel(props) {
+export default function TopPanel({refetch}: any) {
     const [headerHour, setHeaderHour] = useState('00/00/0000');
     const [headerDate, setHeaderDate] = useState('00:00');
     const [timeLoad, setTimeLoad] = useState(new Date());
@@ -42,7 +43,7 @@ export default function TopPanel(props) {
 
             <div className="lh-1 col-4 text-center">
 
-                <a href="#" className="lh-1 mb-0 h6 mt-1 text-white btn" onClick={props.refetch}>Atualizar</a><br/>
+                <a href="#" className="lh-1 mb-0 h6 mt-1 text-white btn" onClick={refetch}>Atualizar</a><br/>
                 <a href="https://app.powerbi.com/view?r=eyJrIjoiYmUxOWJhYzYtMWFkYy00OWQ0LWI2MDgtMTJjMTE4NWI3NDNiIiwidCI6IjhkYzFiNzM0LTEyYTYtNDNmZC1iMjdkLWE3Yzg0ZmQ0MzdkMiJ9"
                    className="lh-1 mb-0 h6 mt-1 text-white btn"
                    target="_blank"

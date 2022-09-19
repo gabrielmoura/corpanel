@@ -3,7 +3,7 @@
  *  Email: gabriel.blx32@gmail.com
  */
 
-import React, {useState} from 'react';
+import {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import MapboxMap from "./map";
@@ -11,7 +11,7 @@ import Activity from "./activity";
 import {format} from "date-fns";
 
 
-export default function EventoCor(props) {
+export default function EventoCor(props: { evento: any; }) {
     const evento = props.evento;
     const [show, setShow] = useState(false);
 

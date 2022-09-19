@@ -35,7 +35,7 @@ export default function Home() {
                             <h6 className="border-bottom pb-2 mb-0">Abertos {(isLoading) ? (
                                 <p>Carregando</p>) : data?.open.eventos.length}</h6>
 
-                            {!(isLoading) ? data?.open.eventos.map(evento => {
+                            {!(isLoading) ? data?.open.eventos.map((evento: { status: string; }) => {
                                 if (evento.status == 'ABERTO') {
                                     return <EventoCor evento={evento}></EventoCor>
                                 }
@@ -49,7 +49,7 @@ export default function Home() {
                         <div className="my-3 p-3 bg-body rounded shadow-sm">
                             <h6 className="border-bottom pb-2 mb-0">Fechados {(isLoading) ? (
                                 <p>Carregando</p>) : data?.close.eventos.length}</h6>
-                            {!(isLoading) ? data?.close.eventos.map(evento => {
+                            {!(isLoading) ? data?.close.eventos.map((evento: { status: string; }) => {
                                 if (evento.status == 'FECHADO') {
                                     return <EventoCor evento={evento}></EventoCor>
                                 }

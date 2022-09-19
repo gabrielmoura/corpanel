@@ -6,9 +6,10 @@
 import Map, {Marker} from 'react-map-gl';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import {Style} from "mapbox-gl";
 
-export default function MapBox(props) {
-    const style = {
+export default function MapBox({latitude, longitude}: any) {
+    const style: Style = {
         "version": 8,
         "sources": {
             "osm": {
@@ -31,14 +32,14 @@ export default function MapBox(props) {
     return (
         <Map mapLib={maplibregl}
              initialViewState={{
-                 latitude: props.latitude,
-                 longitude: props.longitude,
+                 latitude: latitude,
+                 longitude: longitude,
                  zoom: 17
              }}
              style={{width: 470, height: 286}}
              mapStyle={style}
         >
-            <Marker longitude={props.longitude} latitude={props.latitude} color="red"/>
+            <Marker longitude={longitude} latitude={latitude} color="red"/>
         </Map>
     )
 }

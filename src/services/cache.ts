@@ -9,7 +9,7 @@ export async function hasToken() {
     return redis.exists(`${process.env.APP_NAME}:token`) === 1;
 }
 
-export async function setToken(token, sec) {
+export async function setToken(token: string, sec: number) {
     return redis.set(`${process.env.APP_NAME}:token`, token, 'ex', sec);
 }
 
@@ -22,18 +22,18 @@ export function forgetToken() {
 }
 
 
-export function hasCache(key) {
+export function hasCache(key: string) {
     return redis.exists(`${process.env.APP_NAME}:${key}`) === 1;
 }
 
-export function setCache(key, data, sec) {
+export function setCache(key: string, data: string, sec: number) {
     return redis.set(`${process.env.APP_NAME}:${key}`, data, 'ex', sec);
 }
 
-export function getCache(key) {
+export function getCache(key: string) {
     return redis.get(`${process.env.APP_NAME}:${key}`);
 }
 
-export function forgetCache(key) {
+export function forgetCache(key: string) {
     return redis.del(`${process.env.APP_NAME}:${key}`) === 1;
 }

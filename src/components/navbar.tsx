@@ -4,9 +4,14 @@
  */
 
 export default function Navbar() {
-    function toggle(){
-        document.querySelector('.offcanvas-collapse').classList.toggle('open');
+
+    let collapse = 'navbar-collapse offcanvas-collapse';
+
+    function toggle() {
+        // document.querySelector('.offcanvas-collapse').classList.toggle('open')??null;
+        collapse = 'navbar-collapse offcanvas-collapse open';
     }
+
     return (
         <>
             <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark" aria-label="Main navigation">
@@ -17,7 +22,7 @@ export default function Navbar() {
                         <span className="navbar-toggler-icon"></span>
                     </button>
 
-                    <div className="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+                    <div className={collapse} id="navbarsExampleDefault">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item">
                                 <a className="nav-link active" aria-current="page" href="http://cor.rio/">Início</a>
@@ -47,7 +52,8 @@ export default function Navbar() {
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" target='_blank'
-                                   href="https://app.powerbi.com/view?r=eyJrIjoiNmEyZTM3ZTUtZjM3Ni00MDc4LWJiMzctNzI2MDE3ZjY3NDY1IiwidCI6IjhkYzFiNzM0LTEyYTYtNDNmZC1iMjdkLWE3Yzg0ZmQ0MzdkMiJ9" rel="noreferrer">Painel
+                                   href="https://app.powerbi.com/view?r=eyJrIjoiNmEyZTM3ZTUtZjM3Ni00MDc4LWJiMzctNzI2MDE3ZjY3NDY1IiwidCI6IjhkYzFiNzM0LTEyYTYtNDNmZC1iMjdkLWE3Yzg0ZmQ0MzdkMiJ9"
+                                   rel="noreferrer">Painel
                                     de Enguiço</a>
                             </li>
                         </ul>

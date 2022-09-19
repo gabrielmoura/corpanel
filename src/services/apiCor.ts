@@ -4,17 +4,22 @@
  */
 
 const axios = require('axios');
-import {subDays, format, hoursToSeconds} from 'date-fns'
-import {setToken, hasToken, getToken} from './cache'
+import {format, hoursToSeconds, subDays} from 'date-fns'
+import {getToken, hasToken, setToken} from './cache'
 
-module.exports = class Api {
-    token;
+export default class Api {
+    private readonly baseURL: string;
+    private username: string;
+    private password: string;
+    private readonly dataBusca: Date | number;
+    public token: string | null;
 
-    constructor(username, password, baseURL = 'http://ws.status.rio') {
+    constructor(username: string, password: string, baseURL = 'http://ws.status.rio') {
         this.baseURL = baseURL;
         this.username = username;
         this.password = password;
         this.dataBusca = new Date();
+        this.token = null;
     }
 
     async getToken() {
@@ -32,19 +37,19 @@ module.exports = class Api {
                     username: this.username,
                     password: this.password
                 }
-            },).then(r => {
+            },).then((r: { data: string; }) => {
                 setToken(r.data, hoursToSeconds(24) * 9);
                 this.token = r.data;
                 if (process.env.NODE_ENV !== "production") {
                     console.log(r);
                 }
-            }).catch(err => {
+            }).catch((err: any) => {
                 console.error(err);
             });
         }
     }
 
-    async getData(func) {
+    async getData() {
         if (!!this.token) {
             return axios({
                 method: 'get',
@@ -62,7 +67,7 @@ module.exports = class Api {
 
     }
 
-    async getClose(func) {
+    async getClose() {
         if (!!this.token) {
             return axios({
                 method: 'get',
@@ -81,7 +86,7 @@ module.exports = class Api {
 
     }
 
-    async getOpen(func) {
+    async getOpen() {
         if (!!this.token) {
             return axios({
                 method: 'get',
@@ -96,7 +101,7 @@ module.exports = class Api {
 
     }
 
-    async getActivity(eventoId) {
+    async getActivity(eventoId: string) {
         if (!!this.token) {
             return axios({
                 method: 'get',
