@@ -3,13 +3,18 @@
  *  Email: gabriel.blx32@gmail.com
  */
 
-export default function Navbar() {
+import {useState} from "react";
 
-    let collapse = 'navbar-collapse offcanvas-collapse';
+export default function Navbar() {
+    const navbarCollapse = 'navbar-collapse offcanvas-collapse';
+    const [collapse, setCollapse] = useState(navbarCollapse);
 
     function toggle() {
-        // document.querySelector('.offcanvas-collapse').classList.toggle('open')??null;
-        collapse = 'navbar-collapse offcanvas-collapse open';
+        if (collapse == navbarCollapse) {
+            setCollapse(navbarCollapse + ' open');
+        } else {
+            setCollapse(navbarCollapse);
+        }
     }
 
     return (
