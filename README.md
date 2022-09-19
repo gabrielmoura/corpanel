@@ -1,9 +1,14 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# CorPanel
+[![Website](https://img.shields.io/website?label=corpanel.herokuapp.com&style=for-the-badge&url=https://corpanel.herokuapp.com/)](https://corpanel.herokuapp.com/)
 
-## Getting Started
+## Objetivos:
 
-First, run the development server:
+* Exibir chamdados fechados do dia.
+* Exibir todos os chamados em aberto.
+* Exibir detalhes do chamado.
+* Exibir mapa de onde ocorreu o chamado.
 
+## Uso
 ```bash
 npm run dev
 # or
@@ -12,3 +17,11 @@ yarn dev
 docker build -t nextjs-docker .
 docker run -p 3000:3000 nextjs-docker
 ```
+## 🛠 Tecnologias
+* [Maplibre-gl](https://maplibre.org/)
+* [NextJs](https://nextjs.org/)
+* [Date-fns](https://date-fns.org/)
+* [React-query](https://tanstack.com/query/v4/)
+* [React](https://reactjs.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Node >=16](https://nodejs.org/)
