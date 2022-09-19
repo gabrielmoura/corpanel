@@ -21,6 +21,16 @@ export function forgetToken() {
     return redis.del(`${process.env.APP_NAME}:token`) === 1;
 }
 
+export async function rememberCache(key: string, callback: any, sec: number) {
+    if (await redis.exists(`${process.env.APP_NAME}:${key}`) === 1) {
+        return JSON.parse(await redis.get(`${process.env.APP_NAME}:${key}`));
+    } else {
+        const dado = await callback();
+        await redis.set(`${process.env.APP_NAME}:${key}`, JSON.stringify(dado), 'ex', sec);
+        return dado;
+    }
+}
+
 
 export function hasCache(key: string) {
     return redis.exists(`${process.env.APP_NAME}:${key}`) === 1;
