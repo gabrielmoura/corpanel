@@ -25,3 +25,8 @@ docker run -p 3000:3000 nextjs-docker
 * [React](https://reactjs.org/)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Node >=16](https://nodejs.org/)
+
+## Capturas de Tela
+* Tela Principal: ![Tela de Busca](./screenshots/1.jpg)
+* Tela Principal: ![Tela de Busca](./screenshots/2.jpg)
+* Tela Principal Com Mapa: ![Tela de Busca](./screenshots/3.jpg)
